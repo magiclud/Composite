@@ -48,6 +48,9 @@ public abstract class Shape {
 	public void move(int xIncrement, int yIncrement) {
 		this.x += xIncrement;
 		this.y += yIncrement;
+		if (isComposite()) {
+			CompositeShape();
+		}
 		// if is composite, delegate to children
 		//TODO: COmplete
 	}
@@ -89,7 +92,7 @@ public abstract class Shape {
 	public abstract ShapeType getType();
 
 	public boolean isComposite() {
-		if (getType().equals(ShapeType.CIRCLE) || getType().equals(ShapeType.TRIANGLE) || getType().equals(ShapeType.RECTANGLE)) {
+		if (getType() instanceof ShapeType) {
 			return true;
 		}
 		return false;
