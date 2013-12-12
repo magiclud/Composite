@@ -89,8 +89,8 @@ public abstract class Shape {
 	public abstract ShapeType getType();
 
 	public boolean isComposite(Shape shape) {
-		if (shape.asComposite().getType().equals(ShapeType.CIRCLE) || shape.asComposite().getType().equals(ShapeType.TRIANGLE)
-				|| shape.asComposite().getType().equals(ShapeType.RECTANGLE)) {
+		if (shape.getType().equals(ShapeType.CIRCLE) || shape.getType().equals(ShapeType.TRIANGLE)
+				|| shape.getType().equals(ShapeType.RECTANGLE)) {
 			return true;
 		}
 		return false;
