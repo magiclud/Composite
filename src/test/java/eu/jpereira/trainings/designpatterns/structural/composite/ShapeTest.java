@@ -16,6 +16,7 @@
 package eu.jpereira.trainings.designpatterns.structural.composite;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -59,7 +60,7 @@ public class ShapeTest {
 	}
 
 	@Test
-	public void testGetShapesByTye() {
+	public void testGetShapesByTye() throws ShapeDoesNotSupportChildren {
 		Shape shape = createCompositeShapeFixture();
 		// Assert it contains RECTANGLE (well, I know that fixture...)
 		assertNotNull(shape.asComposite().getShapesByType(ShapeType.RECTANGLE));
@@ -68,7 +69,7 @@ public class ShapeTest {
 	}
 
 	@Test
-	public void testRemoveShape() {
+	public void testRemoveShape() throws ShapeDoesNotSupportChildren {
 
 		Shape shape = createCompositeShapeFixture();
 		// Assert it contains RECTANGLE (well, I know that fixture...)
@@ -80,7 +81,7 @@ public class ShapeTest {
 	}
 
 	@Test
-	public void testMoveShape() {
+	public void testMoveShape() throws ShapeDoesNotSupportChildren {
 		Shape testShape = createCompositeShapeFixture();
 		//Move a the shape
 		testShape.move(2, 2);
@@ -95,7 +96,7 @@ public class ShapeTest {
 	}
 	
 	@Test
-	public void testMoveLeafsShapes() {
+	public void testMoveLeafsShapes() throws ShapeDoesNotSupportChildren {
 		Shape testShape = createCompositeShapeFixture();
 		
 		assertEquals(0, testShape.getX());
@@ -113,7 +114,7 @@ public class ShapeTest {
 	}
 	
 	@Test
-	public void moveHierarchyIndependently() {
+	public void moveHierarchyIndependently() throws ShapeDoesNotSupportChildren {
 		
 		Shape rectangle = new Rectangle();
 		//inside the rectangle, has a circle and another rectangle
@@ -163,11 +164,14 @@ public class ShapeTest {
 		assertEquals(4, innerInnerInnerLine.getX());
 		
 	}
+	
 	/**
 	 * Factory method for composite fixture
+	 * 
 	 * @return
+	 * @throws ShapeDoesNotSupportChildren
 	 */
-	protected Shape createCompositeShapeFixture() {
+	protected Shape createCompositeShapeFixture() throws ShapeDoesNotSupportChildren {
 		// Create a circle
 		Shape circle = new Circle();
 		// Create a line
@@ -196,4 +200,9 @@ public class ShapeTest {
 		assertTrue(rectangle.isComposite());
 	}
 
+	@Test
+	public void testCzyLineJestCompomite() {
+		Shape leaf = new Line();
+		assertFalse(leaf.isComposite());
+	}
 }

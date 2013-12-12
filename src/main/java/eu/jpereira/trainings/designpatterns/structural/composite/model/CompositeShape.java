@@ -41,7 +41,8 @@ public abstract class CompositeShape extends Shape {
 	 */
 	public boolean removeShape(Shape shape) {
 		// TODO: implement moje
-		return shapes.remove(shape);
+		shapes.remove(shape);
+		return true;
 	}
 
 	/**
@@ -63,9 +64,12 @@ public abstract class CompositeShape extends Shape {
 	 * @throws ShapeDoesNotSupportChildren
 	 *             if this shape is not a composite
 	 */
-	public void addShape(Shape shape) {
+	public void addShape(Shape shape) throws ShapeDoesNotSupportChildren {
+		if (shape.isComposite()) {
 		// TODO: Implement moje
 		shapes.add(shape);
+		}
+		throw new ShapeDoesNotSupportChildren();
 	}
 
 	public List<Shape> getShapes() {

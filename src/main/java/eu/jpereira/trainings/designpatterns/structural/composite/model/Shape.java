@@ -15,7 +15,6 @@
  */
 package eu.jpereira.trainings.designpatterns.structural.composite.model;
 
-
 /**
  * @author jpereira
  * 
@@ -32,10 +31,11 @@ public abstract class Shape {
 	 *         otherwise
 	 */
 	public CompositeShape asComposite() {
-		// TODO: Implement
+		if (isComposite()) {
+			return (CompositeShape) this;
+		}
 		return null;
 	}
-
 
 	/**
 	 * Move a shape in a 2D scale
@@ -49,10 +49,13 @@ public abstract class Shape {
 		this.x += xIncrement;
 		this.y += yIncrement;
 		if (isComposite()) {
-			CompositeShape();
+			for (Shape shape : asComposite().getShapes()) {
+				shape.move(getX(), getY());
+			}
 		}
+
 		// if is composite, delegate to children
-		//TODO: COmplete
+		// TODO: COmplete
 	}
 
 	/**
@@ -87,12 +90,13 @@ public abstract class Shape {
 
 	/**
 	 * Each instance of a Shape must know it's type
+	 * 
 	 * @return
 	 */
 	public abstract ShapeType getType();
 
 	public boolean isComposite() {
-		if (getType() instanceof ShapeType) {
+		if (this instanceof CompositeShape) {
 			return true;
 		}
 		return false;
