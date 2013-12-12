@@ -105,9 +105,9 @@ public abstract class CompositeShape extends Shape {
 	 * @return
 	 */
 	protected List<Shape> createShapesList() {
-		shapes = new ArrayList();
-		return shapes;
+		return new ArrayList();
 		// TODO: Implement
-		// TODO nie wiem
 	}
+
+
 }

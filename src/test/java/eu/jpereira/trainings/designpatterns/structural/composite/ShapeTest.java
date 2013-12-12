@@ -15,6 +15,10 @@
  */
 package eu.jpereira.trainings.designpatterns.structural.composite;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -26,7 +30,6 @@ import eu.jpereira.trainings.designpatterns.structural.composite.model.Shape;
 import eu.jpereira.trainings.designpatterns.structural.composite.model.ShapeDoesNotSupportChildren;
 import eu.jpereira.trainings.designpatterns.structural.composite.model.ShapeType;
 import eu.jpereira.trainings.designpatterns.structural.composite.model.Triangle;
-import static org.junit.Assert.*;
 
 /**
  * @author jpereira
@@ -182,4 +185,13 @@ public class ShapeTest {
 
 	
 	
+	@Test
+	public void testCzyObiektToTriangle() {
+		Shape rectangle = new Rectangle();
+		Shape innerCircle = new Circle();
+		Shape innerInnerTriangle = new Triangle();
+
+		assertEquals(innerInnerTriangle.getType(), innerInnerTriangle.isComposite(innerInnerTriangle));
+	}
+
 }
