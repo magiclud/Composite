@@ -191,9 +191,9 @@ public class ShapeTest {
 		Shape innerCircle = new Circle();
 		Shape innerInnerTriangle = new Triangle();
 
-		assertTrue(innerInnerTriangle.isComposite(innerInnerTriangle));
-		assertTrue(innerCircle.isComposite(innerCircle));
-		assertTrue(rectangle.isComposite(rectangle));
+		assertTrue(innerInnerTriangle.isComposite());
+		assertTrue(innerCircle.isComposite());
+		assertTrue(rectangle.isComposite());
 	}
 
 }
