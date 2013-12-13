@@ -50,7 +50,9 @@ public abstract class Shape {
 		this.y += yIncrement;
 		if (isComposite()) {
 			for (Shape shape : asComposite().getShapes()) {
-				shape.move(getX(), getY());
+
+				shape.move(xIncrement, yIncrement);
+
 			}
 		}
 
